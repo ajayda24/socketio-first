@@ -24,7 +24,12 @@ app.use((req, res, next) => {
 
 app.use(indexRoute)
 
-const server = app.listen(4000, () => {
+let port = process.env.PORT
+if (port == null || port == '') {
+  port = 4000
+}
+
+const server = app.listen(port, () => {
   console.log('Server started at port 4000')
 })
 const io = require('./socket').init(server)
